@@ -44,6 +44,8 @@ saveBlogEntry.addEventListener("click", () => {
 });
 
 const postEntry = async (entryObject) => {
+  entryObject.timestamp = Date.now();
+  console.log(entryObject);
   let response = await fetch(
     "https://ejercicio-kodercrud-default-rtdb.firebaseio.com/BlogPosts/.json",
     {

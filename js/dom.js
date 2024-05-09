@@ -3,10 +3,31 @@ const printPosts = (postArray, wrapperId) => {
   wrapper.innerHTML = "";
 
   postArray.forEach((post) => wrapper.append(createBlogEntry(post)));
+  console.log(postArray);
+};
+
+const createDate = (timestamp) => {
+  const dateOptions = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  };
+
+  const timeOptions = {
+    hour: "2-digit",
+    minute: "2-digit",
+  };
+
+  const formattedDate = timestamp.toLocaleDateString(undefined, dateOptions);
+  const formattedTime = timestamp.toLocaleTimeString(undefined, timeOptions);
+
+  const formattedDateTime = `${formattedDate} ${formattedTime}`;
+  return formattedDateTime;
 };
 
 const createBlogEntry = (postObject) => {
-  let { author, category, date, image, rating, relevant, title } = postObject;
+  let { author, category, image, rating, relevant, timestamp, title } =
+    postObject;
 
   let blogEntry = document.createElement("article");
   blogEntry.classList.add("card");
@@ -42,7 +63,7 @@ const createBlogEntry = (postObject) => {
 
   let creationTime = document.createElement("div");
   creationTime.classList.add("timestamp");
-  creationTime.innerText = date;
+  creationTime.innerText = createDate(new Date(timestamp));
 
   creationInfo.append(authorName, creationTime);
   blogAuthor.append(authorImg, creationInfo);
