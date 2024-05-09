@@ -3,7 +3,6 @@ let logInBtn = document.getElementById("log-in-btn");
 /*Esta es la función que simula mi login*/
 logInBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  console.log("click");
   let fields = document.querySelectorAll("#login-form input");
 
   let userObject = {};

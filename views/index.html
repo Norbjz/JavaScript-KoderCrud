@@ -21,17 +21,18 @@
   <body>
     <nav class="navbar navbar-expand-sm bg-body-tertiary sticky-top">
       <div class="container-fluid mx-5 px-5">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">Norb</a>
 
         <form class="d-flex me-auto" role="search">
           <input
+            id="search-input"
             class="form-control"
             type="search"
             placeholder="Search"
             aria-label="Search"
           />
-          <button class="btn p-0" type="submit">
-            <span class="border-0" id="search-addon">
+          <button class="btn p-1" type="submit">
+            <span class="border-0">
               <i class="fas fa-search"></i>
             </span>
           </button>
@@ -42,24 +43,206 @@
           <button type="button" class="btn btn-primary">Create account</button>
         </div>
         <div id="user-login" class="d-flex gap-2">
-          <button type="button" class="btn btn-primary">Create post</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#postModal"
+          >
+            Create post
+          </button>
           <span class="d-flex border align-items-center p-2">
             <i class="fa-regular fa-bell"></i>
           </span>
           <a class="d-flex align-items-center" href="#" id="navbarAvatar">
             <img
-              src="https://randomuser.me/api/portraits/men/38.jpg"
+              src="https://randomuser.me/api/portraits/men/84.jpg"
               class="rounded-circle"
               height="32"
-              alt="Black and White Portrait of a Man"
               loading="lazy"
             />
           </a>
         </div>
       </div>
     </nav>
+    <div
+      class="modal fade"
+      id="postModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">New post</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="post-form">
+              <div class="mb-3">
+                <label for="title" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" name="title" />
+              </div>
+              <div class="mb-3">
+                <label for="author" class="col-form-label">Autor:</label>
+                <input type="text" class="form-control" name="author" />
+              </div>
+              <div class="mb-3">
+                <label for="category" class="col-form-label">Categorias:</label>
+                <input type="text" class="form-control" name="category" />
+              </div>
+              <div class="mb-3">
+                <label for="date" class="col-form-label">Fecha:</label>
+                <input type="text" class="form-control" name="date" />
+              </div>
+              <div class="mb-3">
+                <label for="image" class="col-form-label">Imagen:</label>
+                <input type="text" class="form-control" name="image" />
+              </div>
+              <div class="mb-3">
+                <label for="rating" class="col-form-label">Rating:</label>
+                <input type="text" class="form-control" name="rating" />
+              </div>
+              <div class="mb-3">
+                <label for="content" class="col-form-label">Content:</label>
+                <textarea class="form-control" name="content"></textarea>
+              </div>
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input
+                  class="form-check-input me-2"
+                  type="checkbox"
+                  name="relevant"
+                />
+                <label class="form-check-label" for="relevant-check">
+                  Relevant
+                </label>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              id="create-blog-entry"
+              type="button"
+              class="btn btn-primary"
+            >
+              Create post
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contenedor principal -->
 
-    <script src="../js/main.js"></script>
+    <div class="container mt-4 border d-flex">
+      <!-- tabs -->
+      <div
+        class="tabs d-flex flex-column border col-md-1 align-items-center gap-4 pt-2"
+      >
+        <a id="tab1" name="games" href="#tab1"> Relevant </a>
+        <a id="tab2" name="movies" href="#tab2"> Latest </a>
+        <a id="tab3" name="books" href="#tab3"> Top </a>
+      </div>
+
+      <!-- blog post -->
+      <div
+        id="posts-wrapper"
+        class="container col-md-8 d-flex border flex-column gap-4"
+      >
+        <!-- <article class="card">
+          <img
+            class="card-img"
+            src="https://picsum.photos/700/300"
+            alt="Fetch API GraphQL Preview"
+          />
+
+          <div class="content">
+            <div class="card-header">
+              <div class="blog-author d-flex gap-2">
+                <img
+                  class="rounded-circle img-thumbnail"
+                  src="https://randomuser.me/api/portraits/men/38.jpg"
+                  alt="Avatar"
+                />
+                <div
+                  class="blog-creation-info d-flex justify-content-center flex-column"
+                >
+                  <div class="blog-author__name">David Perez</div>
+                  <div class="timestamp">May 8 2024</div>
+                </div>
+              </div>
+              <div class="card-content">
+                <h2>
+                  Using Fetch API For Executing GraphQL Queries And Mutations
+                </h2>
+                <div class="hashtags d-flex col-8 gap-2">
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                </div>
+              </div>
+              <div class="blog-preview__bottom"></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="">
+            <img
+              class="card-img"
+              src="https://picsum.photos/700/300"
+              alt="Fetch API GraphQL Preview"
+            />
+          </div>
+          <div class="content">
+            <div class="card-header">
+              <div class="blog-author d-flex gap-2">
+                <img
+                  class="rounded-circle img-thumbnail"
+                  src="https://randomuser.me/api/portraits/men/38.jpg"
+                  alt="Avatar"
+                />
+                <div
+                  class="blog-creation-info d-flex justify-content-center flex-column"
+                >
+                  <div class="blog-author__name">David Perez</div>
+                  <div class="timestamp">May 8 2024</div>
+                </div>
+              </div>
+              <div class="card-content">
+                <h2>
+                  Using Fetch API For Executing GraphQL Queries And Mutations
+                </h2>
+                <div class="hashtags d-flex col-8 gap-2">
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                  <a href=""><div class="card-type"># Web Dev</div></a>
+                </div>
+              </div>
+              <div class="blog-preview__bottom"></div>
+            </div>
+          </div>
+        </article> -->
+      </div>
+      <!-- aside -->
+      <aside class="container col-md-3 d-flex border">
+        <div class=""></div>
+      </aside>
+    </div>
+
+    <script src="../js/main.js" type="module"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
